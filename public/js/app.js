@@ -68,7 +68,12 @@
 /***/ "./resources/assets/js/app.js":
 /***/ (function(module, exports) {
 
-document.getElementById('loan-form').addEventListener('submit', calculateResults);
+document.getElementById('loan-form').addEventListener('submit', function (e) {
+    document.getElementById('results').style.display = 'none';
+    document.getElementById('loading').style.display = 'block';
+    setTimeout(calculateResults, 100);
+    e.preventDefault();
+});
 
 function calculateResults(e) {
     console.log('Calculating');
@@ -88,11 +93,13 @@ function calculateResults(e) {
         monthlyPayment.value = monthly.toFixed(2);
         totalPayment.value = (monthly * calculatedPayments).toFixed(2);
         totalInterest.value = (monthly * calculatedPayments - principal).toFixed(2);
+        document.getElementById('results').style.display = 'block';
+        document.getElementById('loading').style.display = 'none';
     } else {
         console.log('Please check your numbers');
+        document.getElementById('loading').style.display = 'none';
         showError('Please check your numbers');
     }
-    e.preventDefault();
 }
 
 function showError(error) {
@@ -114,7 +121,7 @@ function clearError() {
 
 /***/ }),
 
-/***/ "./resources/assets/sass/app.scss":
+/***/ "./resources/assets/sass/app.sass":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -125,7 +132,7 @@ function clearError() {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__("./resources/assets/js/app.js");
-module.exports = __webpack_require__("./resources/assets/sass/app.scss");
+module.exports = __webpack_require__("./resources/assets/sass/app.sass");
 
 
 /***/ })
