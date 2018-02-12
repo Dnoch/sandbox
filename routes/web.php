@@ -14,4 +14,5 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('loan-calculator', 'PagesController@loanCalculator');
 Route::post('accept', 'ApiController@acceptData');
