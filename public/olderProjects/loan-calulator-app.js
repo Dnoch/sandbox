@@ -68,7 +68,56 @@
 /***/ "./resources/assets/js/app.js":
 /***/ (function(module, exports) {
 
+document.getElementById('loan-form').addEventListener('submit', function (e) {
+    document.getElementById('results').style.display = 'none';
+    document.getElementById('loading').style.display = 'block';
+    setTimeout(calculateResults, 100);
+    e.preventDefault();
+});
 
+function calculateResults(e) {
+    console.log('Calculating');
+
+    var amount = document.getElementById('amount');
+    var interest = document.getElementById('interest');
+    var years = document.getElementById('years');
+    var monthlyPayment = document.getElementById('monthly-payment');
+    var totalPayment = document.getElementById('total-payment');
+    var totalInterest = document.getElementById('total-interest');
+    var principal = parseFloat(amount.value);
+    var calculatedInterest = parseFloat(interest.value) / 100 / 12;
+    var calculatedPayments = parseFloat(years.value) * 12;
+    var x = Math.pow(1 + calculatedInterest, calculatedPayments);
+    var monthly = principal * x * calculatedInterest / (x - 1);
+    if (isFinite(monthly)) {
+        monthlyPayment.value = monthly.toFixed(2);
+        totalPayment.value = (monthly * calculatedPayments).toFixed(2);
+        totalInterest.value = (monthly * calculatedPayments - principal).toFixed(2);
+        document.getElementById('results').style.display = 'block';
+        document.getElementById('loading').style.display = 'none';
+    } else {
+        console.log('Please check your numbers');
+        document.getElementById('loading').style.display = 'none';
+        showError('Please check your numbers');
+    }
+}
+
+function showError(error) {
+    var errorDiv = document.createElement('div');
+
+    var card = document.querySelector('.card');
+    var heading = document.querySelector('.heading');
+
+    errorDiv.className = 'alert alert-danger';
+    errorDiv.appendChild(document.createTextNode(error));
+    card.insertBefore(errorDiv, heading);
+
+    setTimeout(clearError, 3000);
+}
+
+function clearError() {
+    document.querySelector('.alert').remove();
+}
 
 /***/ }),
 

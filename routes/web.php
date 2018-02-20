@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,9 +9,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
 });
 Route::get('loan-calculator', 'PagesController@loanCalculator');
+Route::get('random-number-calculator', 'PagesController@randomNumberGenerator');
 Route::post('accept', 'ApiController@acceptData');
+Route::get('phpinfo', function () {
+	phpinfo();
+});
