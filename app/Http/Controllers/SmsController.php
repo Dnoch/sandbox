@@ -29,6 +29,7 @@ class SmsController extends Controller
 		$test = new MyMobileAPI();
 		$msg = 'Good morning David. Please remember to take your concerta as soon as you can. Best regards. Lil\' Skynet';
 		$test->sendSms('0762628702', $msg);
+		return response('Success', 200)->header('Content-Type', 'text/plain');
 	}
 	
 	/**
