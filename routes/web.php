@@ -21,3 +21,6 @@ Route::get('phpinfo', function () {
 Route::get('google-maps', 'PagesController@googleMaps');
 Route::get('es6', 'PagesController@es6');
 Route::get('booklist', 'BookListController@index');
+Route::any('test', 'SmsController@sendTest');
+Route::any('concerta', 'SmsController@concerta');
+Route::any('credits', 'SmsController@checkCredits');
