@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BookList;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Services\MyMobileAPI;
 
@@ -26,10 +27,18 @@ class SmsController extends Controller
 	
 	public function concerta()
 	{
-		$test = new MyMobileAPI();
-		$msg = 'Good morning David. Please remember to take your concerta as soon as you can. Best regards. Lil\' Skynet';
-		$test->sendSms('0762628702', $msg);
-		return response('Success', 200)->header('Content-Type', 'text/plain');
+		$now = Carbon::now('Africa/Johannesburg');
+		$now = $now->format('H');
+		
+		if ($now >= 5 && $now <= 12) {
+			$test = new MyMobileAPI();
+			$msg = 'Good morning David. Please remember to take your concerta as soon as you can. Best regards. Lil\' Skynet';
+			$test->sendSms('0762628702', $msg);
+			
+			return response('Success', 200)->header('Content-Type', 'text/plain');
+		} else {
+			return response('Not needed', 200)->header('Content-Type', 'text/plain');
+		}
 	}
 	
 	/**
