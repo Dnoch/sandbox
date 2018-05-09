@@ -18,3 +18,6 @@ Route::post('accept', 'ApiController@acceptData');
 Route::get('phpinfo', function () {
 	phpinfo();
 });
+Route::get('google-maps', 'PagesController@googleMaps');
+Route::get('es6', 'PagesController@es6');
+Route::get('booklist', 'BookListController@index');

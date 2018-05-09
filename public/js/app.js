@@ -68,7 +68,38 @@
 /***/ "./resources/assets/js/app.js":
 /***/ (function(module, exports) {
 
+function Book(title, author, isbn) {
+    this.title = title;
+    this.author = author;
+    this.isbn = isbn;
+}
 
+function UI() {}
+
+UI.prototype.addBookToList = function (book) {
+    var list = document.getElementById('book-list');
+    var row = document.createElement('tr');
+    row.innerHTML = '\n    <td>' + book.title + '</td>\n    <td>' + book.author + '</td>\n    <td>' + book.isbn + '</td>\n    <td><a href="#" class="delete" >X</a></td>\n    ';
+    list.appendChild(row);
+};
+
+UI.prototype.clearFields = function () {
+    document.getElementById('title').value = '';
+    document.getElementById('author').value = '';
+    document.getElementById('isbn').value = '';
+};
+
+document.getElementById('book-form').addEventListener('submit', function (e) {
+    var title = document.getElementById('title').value,
+        author = document.getElementById('author').value,
+        isbn = document.getElementById('isbn').value;
+    var book = new Book(title, author, isbn);
+    var ui = new UI();
+    ui.addBookToList(book);
+
+    ui.clearFields();
+    e.preventDefault();
+});
 
 /***/ }),
 
