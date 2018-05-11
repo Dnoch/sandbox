@@ -68,38 +68,31 @@
 /***/ "./resources/assets/js/app.js":
 /***/ (function(module, exports) {
 
-function Book(title, author, isbn) {
-    this.title = title;
-    this.author = author;
-    this.isbn = isbn;
-}
+document.querySelector('.get-jokes').addEventListener('click', getJokes);
 
-function UI() {}
-
-UI.prototype.addBookToList = function (book) {
-    var list = document.getElementById('book-list');
-    var row = document.createElement('tr');
-    row.innerHTML = '\n    <td>' + book.title + '</td>\n    <td>' + book.author + '</td>\n    <td>' + book.isbn + '</td>\n    <td><a href="#" class="delete" >X</a></td>\n    ';
-    list.appendChild(row);
-};
-
-UI.prototype.clearFields = function () {
-    document.getElementById('title').value = '';
-    document.getElementById('author').value = '';
-    document.getElementById('isbn').value = '';
-};
-
-document.getElementById('book-form').addEventListener('submit', function (e) {
-    var title = document.getElementById('title').value,
-        author = document.getElementById('author').value,
-        isbn = document.getElementById('isbn').value;
-    var book = new Book(title, author, isbn);
-    var ui = new UI();
-    ui.addBookToList(book);
-
-    ui.clearFields();
+function getJokes(e) {
+    var number = document.querySelector('input[type="number"]').value;
     e.preventDefault();
-});
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://api.icndb.com/jokes/random/' + number, true);
+    xhr.onload = function () {
+        if (this.status === 200) {
+            var response = JSON.parse(this.responseText);
+
+            var output = '';
+            if (response.type === 'success') {
+                response.value.forEach(function (joke) {
+                    output += '<li>' + joke.joke + '</li>';
+                });
+            } else {
+                output += '<li>Something went wrong</li>';
+            }
+            document.querySelector('.jokes').innerHTML = output;
+        }
+    };
+
+    xhr.send();
+}
 
 /***/ }),
 

@@ -12,4 +12,5 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.sass', 'public/css').version().browserSync('https://sandbox.laravel');;
+    .js('resources/assets/js/appes6.js', 'public/js')
+   .sass('resources/assets/sass/app.sass', 'public/css').version().browserSync('http://sandbox.laravel');;

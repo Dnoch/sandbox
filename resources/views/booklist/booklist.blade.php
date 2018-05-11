@@ -57,5 +57,5 @@
 
 @section('custom-scripts')
     {{--<script src="/manual-js/app.js"></script>--}}
-    <script src="{{ mix('/js/app.js') }}"></script>
+    <script src="{{ mix('/js/appes6.js') }}"></script>
 @endsection
