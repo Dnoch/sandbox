@@ -10,9 +10,11 @@
         "facebook/graph-sdk": "^5.6",
         "fideloper/proxy": "~4.0",
         "laravel/framework": "5.5.*",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "spatie/browsershot": "^3.22"
     },
     "require-dev": {
+        "bpocallaghan/generators": "^5.0",
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "~1.0",

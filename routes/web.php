@@ -22,6 +22,13 @@ Route::get('google-maps', 'PagesController@googleMaps');
 Route::get('es6', 'PagesController@es6');
 Route::get('booklist', 'BookListController@index');
 Route::get('ajax', 'AjaxController@show');
+Route::get('ajax2', 'AjaxController@show2');
+Route::get('ajax3', 'AjaxController@show3');
+Route::get('ajax4', 'AjaxController@show4');
+Route::get('fetch', 'AjaxController@fetch');
+Route::get('jsonfile1', 'AjaxController@jsonfile1');
+
 Route::any('test', 'SmsController@sendTest');
 Route::any('concerta', 'SmsController@concerta');
 Route::any('credits', 'SmsController@checkCredits');
+Route::get('waze', 'WazeController@show');

@@ -1,0 +1,11 @@
+@extends('frame')
+
+@section('title')
+foo
+@endsection
+@section('content')
+foo
+@endsection
+@section('custom-scripts')
+  <script src=""></script>
+@endsection
