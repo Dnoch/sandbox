@@ -26,9 +26,16 @@ Route::get('ajax2', 'AjaxController@show2');
 Route::get('ajax3', 'AjaxController@show3');
 Route::get('ajax4', 'AjaxController@show4');
 Route::get('fetch', 'AjaxController@fetch');
+Route::get('async', 'AjaxController@async');
 Route::get('jsonfile1', 'AjaxController@jsonfile1');
 
 Route::any('test', 'SmsController@sendTest');
 Route::any('concerta', 'SmsController@concerta');
 Route::any('credits', 'SmsController@checkCredits');
 Route::get('waze', 'WazeController@show');
+
+
+/**
+ * Github Finder
+ */
+Route::get('github', 'GithubFinderController@index');

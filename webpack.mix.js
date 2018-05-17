@@ -13,9 +13,9 @@ let mix = require('laravel-mix');
 
 mix
     .scripts(
-        [
-            'resources/assets/js/easyhttp.js',
-            'resources/assets/js/app.js'
+        ['resources/assets/js/github.js',
+            'resources/assets/js/ui.js',
+            'resources/assets/js/app.js',
         ], 'public/js/app.js'
     )
-   .sass('resources/assets/sass/app.sass', 'public/css').version().browserSync('https://sandbox.laravel/');
+    .sass('resources/assets/sass/app.sass', 'public/css').version().browserSync('https://sandbox.laravel');

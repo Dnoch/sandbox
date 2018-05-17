@@ -112,6 +112,8 @@ return [
         //'view_edit'        => 'edit',
         'view_show'        => 'show',
         'view_create_edit' => 'create_edit',
+        'view_basic' => 'view_basic',
+        
     ],
 
     /*
@@ -139,6 +141,7 @@ return [
     //'view_create_stub'            => base_path() . '/resources/stubs/view.create.stub',
     //'view_edit_stub'              => base_path() . '/resources/stubs/view.edit.stub',
     'view_create_edit_stub'       => base_path() . '/resources/stubs/view.create_edit.stub',
+    'view_basic_stub'       => base_path() . '/resources/stubs/view.basic.stub',
     'schema_create_stub'          => base_path() . '/resources/stubs/schema-create.stub',
     'schema_change_stub'          => base_path() . '/resources/stubs/schema-change.stub',
     'notification_stub'           => base_path() . '/resources/stubs/notification.stub',

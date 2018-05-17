@@ -31,6 +31,11 @@ class AjaxController extends Controller
 		return view('ajax.fetch');
 	}
 	
+	public function async()
+	{
+		return view('ajax.async');
+	}
+	
 	public function jsonfile1()
 	{
 		
