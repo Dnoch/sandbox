@@ -2,13 +2,19 @@ class Github {
     constructor() {
         this.client_id = 'eb4b2d430cd348f24cdb';
         this.client_secret = '49264db8ef977111c4c2d2c6ff4bffc7e1ad8ed7';
+        this.repos_count = 5;
+        this.repos_sort = 'created: asc';
     }
 
     async getUser(user) {
         const profileResponse = await fetch(`https://api.github.com/users/${user}?client_id=${this.client_id}&client_secret=${this.client_secret}`);
+
+        const repoResponse = await fetch(`https://api.github.com/users/${user}/repos?per_page=${this.repos_count}&sort=${this.repos_sort}&client_id=${this.client_id}&client_secret=${this.client_secret}`);
         const profile = await profileResponse.json();
+        const repos = await repoResponse.json();
         return {
-            profile
+            profile,
+            repos
         }
     }
 }
@@ -39,6 +45,25 @@ class UI {
         </div>
     </div>
 </div>`;
+    }
+
+    showRepos(repos){
+        let output = '';
+        repos.forEach(function(repo) {
+            output += `<div class="card card-body mb-2">
+    <div class="row">
+        <div class="col-md-6">
+            <a href="${repo.html_url}">${repo.name}</a>
+        </div>
+        <div class="col-md-6">
+            <span class="badge badge-primary">Stars: ${repo.stargazers_count}</span>
+            <span class="badge badge-secondary">Gists: ${repo.watchers_count}</span>
+            <span class="badge badge-success">Followers: ${repo.forks_count}</span>
+        </div>
+    </div>
+</div>`;
+            document.getElementById('repos').innerHTML = output;
+        })
     }
 
     showAlert(message, className) {
@@ -79,6 +104,7 @@ searchUser.addEventListener('keyup', (e) => {
             }
             else{
                 ui.showProfile(data.profile);
+                ui.showRepos(data.repos);
             }
 
         })
