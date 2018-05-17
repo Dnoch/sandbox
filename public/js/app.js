@@ -40,6 +40,32 @@ class UI {
     </div>
 </div>`;
     }
+
+    showAlert(message, className) {
+        this.clearAlert();
+        const div = document.createElement('div');
+        div.className = className;
+        div.appendChild(document.createTextNode(message));
+        const container = document.querySelector('.searchContainer');
+        const search = document.querySelector('.search');
+        container.insertBefore(div, search);
+
+        setTimeout(() => {
+            this.clearAlert()
+        }, 3000);
+
+    }
+
+    clearAlert() {
+        const currentAlert = document.querySelector('.alert');
+        if (currentAlert) {
+            currentAlert.remove();
+        }
+    }
+
+    clearProfile() {
+        this.profile.innerHTML = '';
+    }
 }
 const github = new Github;
 const ui = new UI;
@@ -49,7 +75,7 @@ searchUser.addEventListener('keyup', (e) => {
     if(userText !== '') {
         github.getUser(userText).then(data => {
             if(data.profile.message === 'Not Found') {
-
+                ui.showAlert('User not found', 'alert alert-danger');
             }
             else{
                 ui.showProfile(data.profile);
@@ -59,6 +85,6 @@ searchUser.addEventListener('keyup', (e) => {
         console.log(userText);
     }
     else{
-
+ui.clearProfile();
     }
 });
