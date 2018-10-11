@@ -18,4 +18,12 @@ mix
             'resources/assets/js/app.js',
         ], 'public/js/app.js'
     )
+    .scripts(
+        [
+            'resources/assets/js/weather-app/storage.js',
+            'resources/assets/js/weather-app/weather.js',
+            'resources/assets/js/weather-app/ui.js',
+            'resources/assets/js/weather-app/app.js',
+        ], 'public/js/weather-app.js'
+    )
     .sass('resources/assets/sass/app.sass', 'public/css').version().browserSync('https://sandbox.laravel');

@@ -33,9 +33,14 @@ Route::any('test', 'SmsController@sendTest');
 Route::any('concerta', 'SmsController@concerta');
 Route::any('credits', 'SmsController@checkCredits');
 Route::get('waze', 'WazeController@show');
-
+Route::get('jlimage', 'RandomImageController@show');
 
 /**
  * Github Finder
  */
 Route::get('github', 'GithubFinderController@index');
+
+/**
+ * Weather JS
+ */
+Route::get('weather', 'WeatherjsController@index');
